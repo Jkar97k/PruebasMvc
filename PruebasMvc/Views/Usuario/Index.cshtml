@@ -1,0 +1,100 @@
+﻿@model List<UsuarioDTO>
+
+<style>
+    .table_left {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-align: left !important;
+        word-break: break-all !important;
+    }
+</style>
+
+<div class="spinner" style="display:none">
+    <div class="center-div">
+        <div class="inner-div">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+
+<div class="post d-flex flex-column-fluid" id="kt_toolbar">
+    <div id="kt_content_container" class="container-xxl" style="max-width: 2000px">
+        <div class="card shadow-sm">
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger mt-3" role="alert">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <span>@error.ErrorMessage</span>
+
+                        <br />
+                    }
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger mt-3" role="alert">
+                    <span>@TempData["ErrorMessage"]</span>
+                    <br />
+                </div>
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success mt-3" role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <div class="card-body">
+
+                <h1>Usuarios</h1>
+
+                <div class="modal-footer">
+                    @* <button type="button" id="btn-add" class="btn btn-primary" tabindex=24>Agregar Usuario</button> *@
+                   @* <a method="GET" asp-action="UserForm" asp-controller="User" class="btn btn-primary">Agregar Usuario</a>  *@
+                </div>
+
+                <div class="table-responsive" id="Tabla">
+
+                    <table id="TablaDatos" name="TablaDatos" class="table align-middle table-row-dashed gy-4 mb-0 nowrap display">
+                        <thead>
+                            <tr class="border-bottom border-gray-200 text-center text-white fw-bolder fs-7 gs-0" style="background-color: slategrey; justify-content: center">
+                                <th>Nombre</th>
+                                <th>User</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="text-align:center">
+                                        <td>@item.Name</td>
+                                        <td>@item.UserName</td>
+                                        <td>
+                                            <a href="Usuario/UserForm/@item.Guid" class="btn btn-primary btn-editar">Editar</a>
+                                            <button class="btn btn-primary btn-editar" id="btn-eliminar" data-id="@item.Guid">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                }
+
+                            }
+                         
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@* @section Scripts {
+    <script src="~/Views/User.js"></script>
+} *@
+
+

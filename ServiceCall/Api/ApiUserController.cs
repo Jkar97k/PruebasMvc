@@ -12,8 +12,11 @@ namespace ServiceCall
 
         public async Task<BaseResponse<List<UsuarioDTO>>> GetAllUsers()
         {
-            return await Get<List<UsuarioDTO>>("User/GetAll");
+            return await Get<List<UsuarioDTO>>("Usuario/GetAll");
         }
-
+        public async Task<BaseResponse<UsuarioCreateDTO>> GetUserByGuid(string guid)
+        {
+            return await Get<UsuarioCreateDTO>($"Usuario/GetUserByGuid/{guid}");
+        }
     }
 }

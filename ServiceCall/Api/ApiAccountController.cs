@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DTO;
+using P.Interfaces;
 
 namespace ServiceCall
 {
-    public class ApiAccountController
+    public class ApiAccountController : HttpBase, IApiAccountController
     {
+        protected ApiAccountController(HttpClient httpClient) : base(httpClient)
+        {
+        }
+
+        public async Task<BaseResponse<AutorizationDTO>> Login(LoginDTO dto)
+        {
+            var resp = await Post<AutorizationDTO, LoginDTO>("Account/login", dto);
+            return resp;
+        }
     }
 }

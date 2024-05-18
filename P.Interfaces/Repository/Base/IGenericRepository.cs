@@ -17,7 +17,7 @@ namespace P.Interfaces
         Task<List<T>> Get();
         //Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true);
         //Task<T?> GetOne(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includes = null, bool disableTracking = true);
-        Task<T?> GetOne(Expression<Func<T, bool>> funcion);
+        Task<T> GetOne(Expression<Func<T, bool>> funcion);
         //Task<List<T>> Search(Expression<Func<T, bool>> funcion);
         //Task<List<T>> Search(Expression<Func<T, bool>> funcion, string incluirPropiedades);
     }

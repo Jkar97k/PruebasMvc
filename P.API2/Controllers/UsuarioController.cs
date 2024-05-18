@@ -18,26 +18,26 @@ namespace P.API2.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _usuarioService.GetAllUsers());
+            return Ok(new { Result = await _usuarioService.GetAllUsers() });
         }
 
-        [HttpGet("GetUserByName/{userName}")]
+        [HttpGet("GetUsuarioByName/{userName}")]
         public async Task<IActionResult> GetUserByName(string userName)
         {
             return Ok(await _usuarioService.GetUserByUserName(userName));
         }
 
-        [HttpGet("GetUserByGuid/{guid}")]
+        [HttpGet("GetUsuarioByGuid/{guid}")]
         public async Task<IActionResult> GetUserByGuid(string guid)
         {
             return Ok(await _usuarioService.GetUserByGuid(guid));
         }
 
         [AllowAnonymous]
-        [HttpPost("CreateUser")]
+        [HttpPost("CreateUsuario")]
         public async Task<IActionResult> CreateUser(UsuarioCreateDTO dto)
         {
             await _usuarioService.CreateUser(dto);

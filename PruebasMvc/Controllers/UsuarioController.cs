@@ -13,7 +13,7 @@ namespace PruebasMvc.Controllers
             _apiUserController = apiUserController;
         }
 
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> Index()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace PruebasMvc.Controllers
 
         [HttpGet("UserForm")]
         [HttpGet("UserForm/{guid}")]
-        public async Task<IActionResult> UserForm([FromRoute] string guid)
+        public async Task<IActionResult> UsuarioForm([FromRoute] string guid)
         {
             try
             {
@@ -48,6 +48,38 @@ namespace PruebasMvc.Controllers
                 }
 
                 return View();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditUsuario(UsuarioCreateDTO user)
+        {
+            if (user.Guid != null)
+            {
+                // Actualizamos usuario
+                TempData["SuccessMessage"] = "Usuario actualizado exitosamente";
+                return Redirect("/Usuario");
+            }
+            else
+            {
+                // Creamos un usuario nuevo
+                TempData["SuccessMessage"] = "Usuario creado exitosamente";
+                return Redirect("/Usuario");
+            }
+        }
+
+
+        [HttpDelete("DeleteUser/{guid}")]
+        public async Task<IActionResult> DeleteUser(string guid)
+        {
+            try
+            {
+                return Json(new { message = "Usuario eliminado exitosamente" });
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ namespace DTO
 {
     public class UsuarioCreateDTO
     {
+        public string Guid { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }

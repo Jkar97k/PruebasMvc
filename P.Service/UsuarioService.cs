@@ -61,14 +61,14 @@ namespace P.Service
         }
 
 
-        Task<UsuarioDTO> IUsuarioService.GetUserByGuid(string guid)
-        {
-            throw new NotImplementedException();
-        }
+        //Task<UsuarioDTO> IUsuarioService.GetUserByGuid(string guid)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        Task<UsuarioCreateDTO> IUsuarioService.GetUserByUserName(string name)
-        {
-            throw new NotImplementedException();
-        }
+        //Task<UsuarioCreateDTO> IUsuarioService.GetUserByUserName(string name)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

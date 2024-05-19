@@ -5,7 +5,7 @@ namespace ServiceCall
 {
     public class ApiAccountController : HttpBase, IApiAccountController
     {
-        protected ApiAccountController(HttpClient httpClient) : base(httpClient)
+        public ApiAccountController(HttpClient httpClient) : base(httpClient)
         {
         }
 

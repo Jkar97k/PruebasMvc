@@ -41,7 +41,7 @@
 
     //    var formData = new FormData($('#formulario'));
 
-    //    var response = await fetch(`/User`, {
+    //    var response = await fetch(`/Usuario`, {
     //        method: 'POST',
     //        body: formData
     //    });

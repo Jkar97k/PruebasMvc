@@ -57,7 +57,7 @@ namespace PruebasMvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUsuario(UsuarioCreateDTO user)
+        public async Task<IActionResult> EditUsuario(UsuarioCreateDTO user)
         {
             if (user.Guid != null)
             {
@@ -66,10 +66,28 @@ namespace PruebasMvc.Controllers
                 return Redirect("/Usuario");
             }
             else
-            {
-                // Creamos un usuario nuevo
-                TempData["SuccessMessage"] = "Usuario creado exitosamente";
-                return Redirect("/Usuario");
+            {// Creamos un usuario nuevo
+                try 
+                {
+                    if (user.Password != user.PasswordConfirm)
+                    {
+                        ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
+                        user.Password = "";
+                        user.PasswordConfirm = "";
+                        return View("UsuarioForm", user);
+                    }
+
+                    var log = await _apiUserController.CreateUsuario(user);
+
+                    TempData["SuccessMessage"] = "Usuario creado exitosamente";
+                    return Redirect("/Usuario");
+
+                } catch (Exception ex)
+                {
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                    return View();
+                    
+                }
             }
         }
 

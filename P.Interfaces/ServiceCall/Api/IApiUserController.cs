@@ -7,5 +7,6 @@ namespace P.Interfaces
     {
         Task<BaseResponse<List<UsuarioDTO>>> GetAllUsers();
         Task<BaseResponse<UsuarioCreateDTO>> GetUserByGuid(string guid);
+        Task<BaseResponse<int>> CreateUsuario(UsuarioCreateDTO DTO);
     }
 }

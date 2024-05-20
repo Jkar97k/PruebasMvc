@@ -33,7 +33,7 @@ namespace P.API2.Controllers
         [HttpGet("GetUsuarioByGuid/{guid}")]
         public async Task<IActionResult> GetUserByGuid(string guid)
         {
-            return Ok(await _usuarioService.GetUserByGuid(guid));
+            return Ok(new { Result = await _usuarioService.GetUserByGuid(guid) });
         }
 
         [AllowAnonymous]

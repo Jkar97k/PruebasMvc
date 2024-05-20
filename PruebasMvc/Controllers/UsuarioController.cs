@@ -4,6 +4,8 @@ using DTO;
 
 namespace PruebasMvc.Controllers
 {
+    //[Authorize]
+    [Route("[controller]")]
     public class UsuarioController : Controller
     {
         private readonly IApiUserController _apiUserController;
@@ -32,6 +34,7 @@ namespace PruebasMvc.Controllers
         [HttpGet("UserForm/{guid}")]
         public async Task<IActionResult> UsuarioForm([FromRoute] string guid)
         {
+            var model = new CombinateUserDTO();
             try
             {
                 if (guid != null)
@@ -44,10 +47,10 @@ namespace PruebasMvc.Controllers
                         return View("Index");
                     }
 
-                    return View(user.Result);
+                    model.usuario = user.Result;
                 }
 
-                return View();
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -57,9 +60,9 @@ namespace PruebasMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUsuario(UsuarioCreateDTO user)
+        public async Task<IActionResult> EditUsuario(CombinateUserDTO model)
         {
-            if (user.Guid != null)
+            if (!string.IsNullOrEmpty(model.usuario.Guid))
             {
                 // Actualizamos usuario
                 TempData["SuccessMessage"] = "Usuario actualizado exitosamente";
@@ -69,15 +72,20 @@ namespace PruebasMvc.Controllers
             {// Creamos un usuario nuevo
                 try 
                 {
-                    if (user.Password != user.PasswordConfirm)
+                    if (model.create == null)
                     {
-                        ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
-                        user.Password = "";
-                        user.PasswordConfirm = "";
-                        return View("UsuarioForm", user);
+                        model.create = new UsuarioCreateDTO();
                     }
 
-                    var log = await _apiUserController.CreateUsuario(user);
+                    if (model.create.Password != model.create.PasswordConfirm)
+                    {
+                        ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
+                        model.create.Password = "";
+                        model.create.PasswordConfirm = "";
+                        return View("UsuarioForm", model.create);
+                    }
+
+                    var log = await _apiUserController.CreateUsuario(model.create);
 
                     TempData["SuccessMessage"] = "Usuario creado exitosamente";
                     return Redirect("/Usuario");

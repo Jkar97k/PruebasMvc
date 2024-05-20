@@ -6,7 +6,7 @@ namespace P.Interfaces
     public interface IApiUserController
     {
         Task<BaseResponse<List<UsuarioDTO>>> GetAllUsers();
-        Task<BaseResponse<UsuarioCreateDTO>> GetUserByGuid(string guid);
+        Task<BaseResponse<UsuarioDTO>> GetUserByGuid(string guid);
         Task<BaseResponse<int>> CreateUsuario(UsuarioCreateDTO DTO);
     }
 }

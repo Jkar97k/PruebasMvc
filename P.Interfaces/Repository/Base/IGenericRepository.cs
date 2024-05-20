@@ -12,7 +12,7 @@ namespace P.Interfaces
         Task<int> Add(T entity);
         //Task<int> AddRange(List<T> entity);
         //Task DeleteById(int id);
-        //Task Edit(T entidad);
+        Task<int> Edit(T entidad);
         //Task Edit(T entidad, T model);
         Task<List<T>> Get();
         //Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true);

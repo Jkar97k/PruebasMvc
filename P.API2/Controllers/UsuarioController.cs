@@ -47,5 +47,18 @@ namespace P.API2.Controllers
 
             return Ok(new { Message = _usuarioService.Message });
         }
+
+
+        [HttpPut("Put")]
+        public async Task<ActionResult> Update(UsuarioDTO dto)
+        {
+            await _usuarioService.Update(dto);
+
+            if (_usuarioService.StatusCode != 200)
+                return StatusCode(_usuarioService.StatusCode, _usuarioService.Message);
+
+            return Ok(new { Message = _usuarioService.Message });
+
+        }
     }
 }

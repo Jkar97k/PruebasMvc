@@ -8,5 +8,6 @@ namespace P.Interfaces
         Task<List<UsuarioDTO>> GetAllUsers();
         Task<UsuarioDTO> GetUserByGuid(string guid);
         Task<UsuarioCreateDTO> GetUserByUserName(string name);
+        Task Update(UsuarioDTO dto);
     }
 }

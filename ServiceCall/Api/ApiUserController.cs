@@ -25,5 +25,12 @@ namespace ServiceCall
             var resp = await Post<BaseResponse<int>, UsuarioCreateDTO>("Usuario/CreateUsuario", DTO);
             return resp.Result;
         }
+
+        public async Task<BaseResponse<int>> PutUsuario(UsuarioDTO DTO)
+        {
+
+            var resp = await Put<BaseResponse<int>, UsuarioDTO>("Usuario/Put", DTO);
+            return resp.Result;
+        }
     }
 }

@@ -63,8 +63,15 @@ namespace PruebasMvc.Controllers
         public async Task<IActionResult> EditUsuario(CombinateUserDTO model)
         {
             if (!string.IsNullOrEmpty(model.usuario.Guid))
-            {
-                // Actualizamos usuario
+            {// Actualizamos usuario
+                if (string.IsNullOrEmpty(model.usuario.Name) || string.IsNullOrEmpty(model.usuario.UserName)) 
+                {
+                    ModelState.AddModelError(string.Empty, " No dejar los campos vacios");
+                    return View("UsuarioForm", model);
+                }
+
+                var log = await _apiUserController.PutUsuario(model.usuario);
+
                 TempData["SuccessMessage"] = "Usuario actualizado exitosamente";
                 return Redirect("/Usuario");
             }
@@ -82,7 +89,7 @@ namespace PruebasMvc.Controllers
                         ModelState.AddModelError(string.Empty, "Las contraseñas no coinciden");
                         model.create.Password = "";
                         model.create.PasswordConfirm = "";
-                        return View("UsuarioForm", model.create);
+                        return View("UsuarioForm", model);
                     }
 
                     var log = await _apiUserController.CreateUsuario(model.create);

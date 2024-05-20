@@ -34,6 +34,13 @@ namespace P.Repository
             return await _context.Set<T>().AsNoTracking().Where(funcion).FirstOrDefaultAsync();
         }
 
+        public async Task<int> Edit(T entidad)
+        {
+            _context.Set<T>().Attach(entidad);
+            _context.Entry(entidad).State = EntityState.Modified;
+            return await _context.SaveChangesAsync();
+        }
+
         //public async Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
         //                       Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
         //                       string includeString = null,
@@ -92,12 +99,7 @@ namespace P.Repository
         //    return await _context.SaveChangesAsync();
         //}
 
-        //public async Task Edit(T entidad)
-        //{
-        //    _context.Set<T>().Attach(entidad);
-        //    _context.Entry(entidad).State = EntityState.Modified;
-        //    await _context.SaveChangesAsync();
-        //}
+
 
         //public async Task Edit(T entidad, T model)
         //{

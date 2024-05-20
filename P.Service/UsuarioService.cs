@@ -2,6 +2,7 @@
 using DTO;
 using P.Interfaces;
 using P.Model;
+using System;
 
 
 namespace P.Service
@@ -58,6 +59,40 @@ namespace P.Service
             this.Message = "Usuario registrado exitosamente";
 
             await _usuarioRepository.Add(user);
+        }
+        public async Task Update(UsuarioDTO dto)
+        {
+            var dataG = await _usuarioRepository.GetOne(x => x.Guid == dto.Guid);
+
+
+            if (dataG == null)
+            {
+                this.StatusCode = 400;
+                this.Message = "El usuario para actualizar no existe";
+                return;
+            }
+            var dataN = await _usuarioRepository.GetOne(x => x.UserName == dto.UserName);
+
+            if (dataN != null)
+            {
+                this.StatusCode = 400;
+                this.Message = "El UserName ya esta en uso";
+                return;
+            }
+
+            var user = _mapper.Map(dto,dataG);
+            var result = await _usuarioRepository.Edit(user);
+
+            if (result == 0)
+            {
+                this.Message = "Ha ocurrido un error en el servidor pongase en contacto con el administrador.";
+                this.StatusCode = 500;
+                return;
+            }
+
+            this.Message = "actualizado exitosamente";
+            this.StatusCode = 200;
+            return;
         }
 
 

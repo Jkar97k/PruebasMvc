@@ -19,4 +19,7 @@
     <ProjectReference Include="..\ServiceCall\ServiceCall.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Folder Include="wwwroot\Views\" />
+	</ItemGroup>
 </Project>

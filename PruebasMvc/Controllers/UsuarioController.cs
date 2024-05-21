@@ -37,6 +37,8 @@ namespace PruebasMvc.Controllers
             var model = new CombinateUserDTO();
             try
             {
+                
+
                 if (guid != null)
                 {
                     var user = await _apiUserController.GetUserByGuid(guid);
@@ -48,9 +50,11 @@ namespace PruebasMvc.Controllers
                     }
 
                     model.usuario = user.Result;
+
+                    return View(model);
                 }
 
-                return View(model);
+                return View();
             }
             catch (Exception ex)
             {

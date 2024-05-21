@@ -15,7 +15,7 @@
             .then(async (willDelete) => {
                 if (willDelete) {
 
-                    var response = await fetch(`/User/DeleteUser/${guid}`, {
+                    var response = await fetch(`/Usuario/DeleteUser/${guid}`, {
                         method: 'DELETE',
                     });
 
@@ -39,9 +39,9 @@
     //$('#btn-save').click(function () {
 
 
-    //    var formData = new FormData($('#formulario'));
+    //    var formData = new FormData($('#formulario')[0]);
 
-    //    var response = await fetch(`/Usuario`, {
+    //    var response = await fetch(`/User`, {
     //        method: 'POST',
     //        body: formData
     //    });

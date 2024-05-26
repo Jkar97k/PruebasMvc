@@ -32,5 +32,10 @@ namespace ServiceCall
             var resp = await Put<BaseResponse<int>, UsuarioDTO>("Usuario/Put", DTO);
             return resp.Result;
         }
+        public async Task<BaseResponse<int>> Delete(string guid)
+        {
+            var resp = await Delete<BaseResponse<int>>($"Usuario/Delete/{guid}");
+            return resp.Result;
+        }
     }
 }

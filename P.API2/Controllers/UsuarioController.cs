@@ -60,5 +60,16 @@ namespace P.API2.Controllers
             return Ok(new { Message = _usuarioService.Message });
 
         }
+        [HttpDelete("Delete/{guid}")]
+        public async Task<IActionResult> Delete(string guid)
+        {
+             await _usuarioService.Deletebyguild(guid);
+
+            if (_usuarioService.StatusCode != 200)
+                return StatusCode(_usuarioService.StatusCode, _usuarioService.Message);
+
+            return Ok(new { Message = _usuarioService.Message });
+
+        }
     }
 }

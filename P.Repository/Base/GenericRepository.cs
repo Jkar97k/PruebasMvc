@@ -40,6 +40,17 @@ namespace P.Repository
             _context.Entry(entidad).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
         }
+        public async Task<int> DeleteByguid(Expression<Func<T, bool>> funcion)
+        {
+            var entity = await _context.Set<T>().AsNoTracking().Where(funcion).FirstOrDefaultAsync();
+            if (entity != null)
+            {
+                _context.Remove(entity);
+                return await _context.SaveChangesAsync();
+
+            }
+            return 0;
+        }
 
         //public async Task<List<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
         //                       Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
@@ -108,12 +119,7 @@ namespace P.Repository
         //    await _context.SaveChangesAsync();
         //}
 
-        //public async Task DeleteById(int id)
-        //{
-        //    var entity = _context.Set<T>().FindAsync(id);
-        //    _context.Remove(entity);
-        //    await _context.SaveChangesAsync();
-        //}
+
 
         //private IQueryable<T> IncluirPropiedades(IQueryable<T> peticion, string incluirPropiedades)
         //{

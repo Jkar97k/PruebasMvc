@@ -11,7 +11,7 @@ namespace P.Interfaces
     {
         Task<int> Add(T entity);
         //Task<int> AddRange(List<T> entity);
-        //Task DeleteById(int id);
+        Task<int> DeleteByguid(Expression<Func<T, bool>> funcion);
         Task<int> Edit(T entidad);
         //Task Edit(T entidad, T model);
         Task<List<T>> Get();

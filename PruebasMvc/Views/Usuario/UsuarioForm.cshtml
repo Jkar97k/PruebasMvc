@@ -44,7 +44,10 @@
                                 <input type="text" id="PasswordConfirm" name="create.PasswordConfirm" class="form-control" value="@Model?.create?.PasswordConfirm" />
                             </div>
 
-                            <button type="submit" class="btn btn-success mt-3" id="btn-save">Guardar</button>
+                            <div class="form-group d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-success" id="btn-save">Guardar</button>
+                                <a href="../usuario" class="btn btn-danger">Cancelar</a>
+                            </div>
                         </form>
 
                     </div>
@@ -95,7 +98,11 @@
                                 <input type="text" id="UserName" name="usuario.UserName" class="form-control" value="@Model?.usuario?.UserName" />
                             </div>
 
-                            <button type="submit" class="btn btn-success mt-3" id="btn-edit-save">Guardar Cambios</button>
+                            <div class="form-group d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-success mt-3" id="btn-edit-save">Guardar Cambios</button>
+                                <button type="button" class="btn btn-danger" onclick="window.location.href='..';">Cancelar</button>
+@*                                 <a href="../" class="btn btn-danger">Cancelar</a> *@
+                            </div>
                         </form>
 
                     </div>
@@ -106,7 +113,8 @@
         </div>
     </div>
 </div>
-@* @section Scripts {
+
+@section Scripts {
     <script src="~/Views/User.js"></script>
-} *@
+}
 

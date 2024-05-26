@@ -110,12 +110,12 @@ namespace PruebasMvc.Controllers
             }
         }
 
-
         [HttpDelete("DeleteUser/{guid}")]
         public async Task<IActionResult> DeleteUser(string guid)
         {
             try
             {
+                var log = await _apiUserController.Delete(guid);
                 return Json(new { message = "Usuario eliminado exitosamente" });
             }
             catch (Exception ex)

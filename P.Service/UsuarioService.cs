@@ -95,6 +95,30 @@ namespace P.Service
             return;
         }
 
+        public async Task Deletebyguild(string guid)
+        {
+            var data = await _usuarioRepository.GetOne(x => x.Guid == guid );
+
+            if (data == null)
+            {
+                this.StatusCode = 400;
+                this.Message = "El usuario no exite, elija otro";
+                return;
+            }
+
+            var resp = await _usuarioRepository.DeleteByguid(x => x.Guid == guid);
+
+            if (resp == 0) 
+            {
+                this.Message = "Ha ocurrido un error en el servidor pongase en contacto con el administrador.";
+                this.StatusCode = 500;
+                return;
+            }
+            this.Message = "actualizado exitosamente";
+            this.StatusCode = 200;
+            return;
+        }
+
 
         //Task<UsuarioDTO> IUsuarioService.GetUserByGuid(string guid)
         //{

@@ -1,0 +1,52 @@
+<div class="table-container">
+  <!-- Paginador en la parte superior -->
+  <mat-paginator [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons class="paginator"></mat-paginator>
+
+  <table mat-table [dataSource]="dataSource" class="table table-striped mat-elevation-z8 centered-table" matSort>
+
+    <!-- User Name Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> User Name </th>
+      <td mat-cell *matCellDef="let user" class="data-cell"> {{user.userName}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Name </th>
+      <td mat-cell *matCellDef="let user" class="data-cell"> {{user.name}} </td>
+    </ng-container>
+
+    <!-- ProfesionId Column -->
+    <ng-container matColumnDef="profesionId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Profession ID </th>
+      <td mat-cell *matCellDef="let user" class="data-cell"> {{user.profesionId || 'N/A'}} </td>
+    </ng-container>
+
+    <!-- ProfesionId Column -->
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Correo </th>
+      <td mat-cell *matCellDef="let user" class="data-cell"> {{user.correo || 'N/A'}} </td>
+    </ng-container>
+
+    <!-- Acciones Column -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef class="header-cell"> Acciones </th>
+      <td mat-cell *matCellDef="let user" class="data-cell">
+        <button class="btn btn-warning btn-sm" (click)="editarUser(user)">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="elimiarUser(user)">
+          <i class="bi bi-trash-fill"></i>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-row"></tr>
+
+    <!-- Data Rows -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="data-row"></tr>
+
+  </table>
+</div>
+

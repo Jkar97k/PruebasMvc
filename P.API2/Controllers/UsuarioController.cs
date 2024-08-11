@@ -21,8 +21,10 @@ namespace P.API2.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> Get()
         {
-            return Ok(new { Result = await _usuarioService.GetAllUsers() });
+            var users = await _usuarioService.GetAllUsers();
+            return Ok(users);  // Devuelve directamente el array de usuarios
         }
+
 
         [HttpGet("GetUsuarioByName/{userName}")]
         public async Task<IActionResult> GetUserByName(string userName)
@@ -45,7 +47,7 @@ namespace P.API2.Controllers
             if (_usuarioService.StatusCode != 200)
                 return StatusCode(_usuarioService.StatusCode, _usuarioService.Message);
 
-            return Ok(new { Message = "Primer post" }); /*_usuarioService.Message*/
+            return Ok(new { Message = "Registro creado Exitosamente" }); /*_usuarioService.Message*/
         }
 
 

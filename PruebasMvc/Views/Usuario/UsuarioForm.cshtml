@@ -25,23 +25,23 @@
 
                         <form method="post" asp-action="EditUsuario" asp-controller="Usuario" id="formulario">
                             <div class="form-group">
-                                <input type="text" id="Guid" name="create.Guid" class="form-control" value="@Model?.create?.Guid" hidden />
+                                <input type="text" id="Guid" name="create.Guid" class="form-control" value="@Model?.create?.guid" hidden />
                             </div>
                             <div class="form-group">
                                 <label for="Name">Nombre</label>
-                                <input type="text" id="Name" name="create.Name" class="form-control" value="@Model?.create?.Name" />
+                                <input type="text" id="Name" name="create.Name" class="form-control" value="@Model?.create?.name" />
                             </div>
                             <div class="form-group">
                                 <label for="UserName">UserName</label>
-                                <input type="text" id="UserName" name="create.UserName" class="form-control" value="@Model?.create?.UserName" />
+                                <input type="text" id="UserName" name="create.UserName" class="form-control" value="@Model?.create?.userName" />
                             </div>
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="text" id="Password" name="create.Password" class="form-control" value="@Model?.create?.Password" />
+                                <input type="text" id="Password" name="create.Password" class="form-control" value="@Model?.create?.password" />
                             </div>
                             <div class="form-group">
                                 <label for="PasswordConfirm">Confirmacion Password</label>
-                                <input type="text" id="PasswordConfirm" name="create.PasswordConfirm" class="form-control" value="@Model?.create?.PasswordConfirm" />
+                                <input type="text" id="PasswordConfirm" name="create.PasswordConfirm" class="form-control" value="@Model?.create?.passwordConfirm" />
                             </div>
 
                             <div class="form-group d-flex justify-content-between mt-3">
@@ -87,15 +87,15 @@
 
                         <form method="post" asp-action="EditUsuario" asp-controller="Usuario" id="formulario">
                             <div class="form-group">
-                                <input type="text" id="Guid" name="usuario.Guid" class="form-control" value="@Model?.usuario?.Guid" hidden />
+                                <input type="text" id="Guid" name="usuario.Guid" class="form-control" value="@Model?.usuario?.guid" hidden />
                             </div>
                             <div class="form-group">
                                 <label for="Name">Nombre</label>
-                                <input type="text" id="Name" name="usuario.Name" class="form-control" value="@Model?.usuario?.Name" />
+                                <input type="text" id="Name" name="usuario.Name" class="form-control" value="@Model?.usuario?.name" />
                             </div>
                             <div class="form-group">
                                 <label for="UserName">UserName</label>
-                                <input type="text" id="UserName" name="usuario.UserName" class="form-control" value="@Model?.usuario?.UserName" />
+                                <input type="text" id="UserName" name="usuario.UserName" class="form-control" value="@Model?.usuario?.userName" />
                             </div>
 
                             <div class="form-group d-flex justify-content-between mt-3">

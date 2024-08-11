@@ -40,7 +40,7 @@ namespace P.Service
 
         public async Task CreateUser(UsuarioCreateDTO dto)
         {
-            var data = await _usuarioRepository.GetOne(x => x.Username == dto.UserName);
+            var data = await _usuarioRepository.GetOne(x => x.Username == dto.userName);
 
             if (data != null)
             {
@@ -50,7 +50,7 @@ namespace P.Service
             }
 
             string salt = BCrypt.Net.BCrypt.GenerateSalt();
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password, salt);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.password, salt);
 
             var user = _mapper.Map<Usuario>(dto);
             user.Password = hashedPassword;
@@ -63,7 +63,7 @@ namespace P.Service
         }
         public async Task Update(UsuarioDTO dto)
         {
-            var dataG = await _usuarioRepository.GetOne(x => x.Guid == dto.Guid);
+            var dataG = await _usuarioRepository.GetOne(x => x.Guid == dto.guid);
 
 
             if (dataG == null)
@@ -72,7 +72,7 @@ namespace P.Service
                 this.Message = "El usuario para actualizar no existe";
                 return;
             }
-            var dataN = await _usuarioRepository.GetOne(x => x.Username == dto.UserName);
+            var dataN = await _usuarioRepository.GetOne(x => x.Username == dto.userName);
 
             if (dataN != null)
             {
@@ -98,7 +98,8 @@ namespace P.Service
 
         public async Task Deletebyguild(string guid)
         {
-            var data = await _usuarioRepository.GetOne(x => x.Guid == guid );
+           // var data = await _usuarioRepository.GetOne(x => x.Guid == guid );
+            var data = await _usuarioRepository.GetOne(x => x.Id == Convert.ToInt32(guid) );
 
             if (data == null)
             {
@@ -107,7 +108,8 @@ namespace P.Service
                 return;
             }
 
-            var resp = await _usuarioRepository.DeleteByguid(x => x.Guid == guid);
+            //var resp = await _usuarioRepository.DeleteByguid(x => x.Guid == guid);
+            var resp = await _usuarioRepository.DeleteByguid(x => x.Id == Convert.ToInt32(guid));
 
             if (resp == 0) 
             {

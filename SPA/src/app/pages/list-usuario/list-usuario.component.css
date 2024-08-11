@@ -1,0 +1,37 @@
+.table-container {
+  display: flex !important;
+  flex-direction: column; /* Añadido para alinear el paginador y la tabla verticalmente */
+  align-items: center; /* Centrar el paginador y la tabla */
+  margin: 4rem !important;
+}
+
+.centered-table {
+  width: 80% !important;
+}
+
+.header-cell {
+  background-color: #343a40; /* Negro oscuro */
+  color: #ff7707; /* Naranja */
+}
+
+.data-cell {
+  background-color: #f8f9fa; /* Gris claro */
+  color: #343a40; /* Negro oscuro */
+}
+
+.header-row {
+  background-color: #343a40; /* Negro oscuro */
+  color: #ff7707; /* Naranja */
+}
+
+.data-row {
+  background-color: #f8f9fa; /* Gris claro */
+  color: #343a40; /* Negro oscuro */
+}
+
+.paginator {
+  background-color: #343a40; /* Negro oscuro */
+  color: #ff7707; /* Naranja */
+  width: 100% !important; /* Mantener el mismo ancho que la tabla */
+  margin-bottom: 1rem; /* Separación inferior para estética */
+}

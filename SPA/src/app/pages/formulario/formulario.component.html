@@ -1,5 +1,9 @@
 <h1>Crear usuario nuevo</h1>
-
+@if (msmResp != '' ) {
+  <div class="alert alert-success" role="alert">
+    {{msmResp}}
+  </div>
+}
 <mat-card>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">

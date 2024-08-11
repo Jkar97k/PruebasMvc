@@ -8,12 +8,12 @@ namespace DTO
 {
     public class UsuarioCreateDTO
     {
-        public string Guid { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string PasswordConfirm { get; set; }
-        public string Name { get; set; }
-        public string Correo { get; set; }
-        public int? ProfesionId { get; set; }
+        public string guid { get; set; }
+        public string userName { get; set; }
+        public string password { get; set; }
+        public string passwordConfirm { get; set; }
+        public string name { get; set; }
+        public string correo { get; set; }
+        public int? profesionId { get; set; }
     }
 }

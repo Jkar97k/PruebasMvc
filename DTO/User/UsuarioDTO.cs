@@ -8,8 +8,11 @@ namespace DTO
 {
     public class UsuarioDTO
     {
-        public string Guid { get; set; }
-        public string UserName { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string guid { get; set; }
+        public string userName { get; set; }
+        public string name { get; set; }
+        public int? profesionId { get; set; }
+        public string correo { get; set; }
     }
 }

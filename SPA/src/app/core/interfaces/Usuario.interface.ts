@@ -1,8 +1,8 @@
-export interface Usuario {
-  guid: string;
+export interface UsuarioDTO {
+  Id ?: string;
+  guid?: string;
   userName: string;
-  password: string;
-  passwordConfirm: string;
   name: string;
   correo: string;
+  profesionId: number; // El signo de interrogación indica que es opcional
 }

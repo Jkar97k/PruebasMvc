@@ -44,6 +44,7 @@ namespace P.Repository
         public async Task<int> DeleteByguid(Expression<Func<T, bool>> funcion)
         {
             var entity = await _context.Set<T>().AsNoTracking().Where(funcion).FirstOrDefaultAsync();
+
             if (entity != null)
             {
                 _context.Remove(entity);

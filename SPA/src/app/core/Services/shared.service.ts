@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
+import { UsuarioCreate } from '../interfaces/UsuarioCreate.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class SharedService {
 
   constructor(private http: HttpClient) { }
 
-  createUsuario(usuario: any) {
+  createUsuario(usuario: UsuarioCreate) {
     return this.http.post<any>(`${this.apiURL}/CreateUsuario`, usuario)
       .pipe(
         catchError(error => {

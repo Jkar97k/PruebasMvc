@@ -34,7 +34,7 @@ namespace P.Service
                 return null;
             }
 
-            bool passwordsMatch = BCrypt.Net.BCrypt.Verify(dto.Password, user?.Password);
+            bool passwordsMatch = BCrypt.Net.BCrypt.Verify(dto.Password, user?.password);
             if (!passwordsMatch)
             {
                 this.StatusCode = 400;
@@ -57,8 +57,8 @@ namespace P.Service
 
             var claims = new List<Claim>
             {
-                new Claim("Name", dto.Name),
-                new Claim("UserName", dto.UserName),
+                new Claim("Name", dto.name),
+                new Claim("UserName", dto.userName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 

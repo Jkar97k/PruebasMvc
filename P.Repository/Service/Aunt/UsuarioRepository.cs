@@ -1,5 +1,7 @@
 ﻿using P.Interfaces;
 using P.Model;
+using P.Model.Data;
+using P.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace P.Repository
 {
     public class UsuarioRepository : GenericRepository<Usuario>, IUsuarioRepository
     {
-        public UsuarioRepository(AppDbContext context) : base(context)
+        public UsuarioRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

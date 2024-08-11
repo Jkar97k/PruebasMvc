@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using P.Interfaces;
+using P.Model.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace P.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public GenericRepository(AppDbContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             _context = context;
         }

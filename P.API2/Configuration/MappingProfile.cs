@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DTO;
 using P.Model;
+using P.Model.Models;
 
 namespace P.API2.Configuration
 {

@@ -7,10 +7,11 @@ using Microsoft.IdentityModel.Tokens;
 using P.Interfaces;
 using System.Text;
 using P.Service;
+using P.Model.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>(
+builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -72,6 +73,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Uso de CORS (esto debe estar antes de UseAuthorization)
+app.UseCors();
 
 app.UseAuthorization();
 

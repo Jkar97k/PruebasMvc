@@ -13,5 +13,6 @@ namespace DTO
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
         public string Name { get; set; }
+        public string Correo { get; set; }
     }
 }

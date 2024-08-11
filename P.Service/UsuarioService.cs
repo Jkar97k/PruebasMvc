@@ -2,6 +2,7 @@
 using DTO;
 using P.Interfaces;
 using P.Model;
+using P.Model.Models;
 using System;
 
 
@@ -27,7 +28,7 @@ namespace P.Service
 
         public async Task<UsuarioCreateDTO> GetUserByUserName(string userName)
         {
-            var data = await _usuarioRepository.GetOne(x => x.UserName == userName);
+            var data = await _usuarioRepository.GetOne(x => x.Username == userName);
             return _mapper.Map<UsuarioCreateDTO>(data);
         }
 
@@ -39,7 +40,7 @@ namespace P.Service
 
         public async Task CreateUser(UsuarioCreateDTO dto)
         {
-            var data = await _usuarioRepository.GetOne(x => x.UserName == dto.UserName);
+            var data = await _usuarioRepository.GetOne(x => x.Username == dto.UserName);
 
             if (data != null)
             {
@@ -71,7 +72,7 @@ namespace P.Service
                 this.Message = "El usuario para actualizar no existe";
                 return;
             }
-            var dataN = await _usuarioRepository.GetOne(x => x.UserName == dto.UserName);
+            var dataN = await _usuarioRepository.GetOne(x => x.Username == dto.UserName);
 
             if (dataN != null)
             {

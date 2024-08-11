@@ -11,5 +11,8 @@ namespace P.Model.Models
         public string Name { get; set; }
         public string Guid { get; set; }
         public string Correo { get; set; }
+        public int? ProfesionId { get; set; }
+
+        public virtual Profesion Profesion { get; set; }
     }
 }

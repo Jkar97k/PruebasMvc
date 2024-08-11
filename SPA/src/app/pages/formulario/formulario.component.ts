@@ -2,11 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Usuario } from '../../core/interfaces/Usuario.interface';
 import { SharedService } from '../../core/Services/shared.service';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule
+],
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
@@ -30,9 +45,6 @@ export class FormularioComponent implements OnInit {
       correo: ['', [Validators.required, Validators.email]]  // Nuevo campo correo
     });
   }
-
-
-
   onSubmit() {
     if (this.userForm.valid)
     {

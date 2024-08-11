@@ -14,5 +14,6 @@ namespace DTO
         public string PasswordConfirm { get; set; }
         public string Name { get; set; }
         public string Correo { get; set; }
+        public int? ProfesionId { get; set; }
     }
 }

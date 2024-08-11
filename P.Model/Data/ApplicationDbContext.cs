@@ -17,6 +17,7 @@ namespace P.Model.Data
         {
         }
 
+        public virtual DbSet<Profesion> Profesions { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,6 +31,18 @@ namespace P.Model.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Profesion>(entity =>
+            {
+                entity.ToTable("PROFESION");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("NOMBRE");
+            });
+
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("USUARIOS");
@@ -59,6 +72,11 @@ namespace P.Model.Data
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("USERNAME");
+
+                entity.HasOne(d => d.Profesion)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.ProfesionId)
+                    .HasConstraintName("FK_USUARIOS_PROFESION");
             });
 
             OnModelCreatingPartial(modelBuilder);

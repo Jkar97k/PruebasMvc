@@ -1,4 +1,38 @@
 <h1>Crear usuario nuevo</h1>
+
+<mat-card>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>User Name</mat-label>
+      <input matInput type="text" id="userName" formControlName="userName">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" id="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" id="passwordConfirm" formControlName="passwordConfirm">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" id="name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" id="correo" formControlName="correo">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</mat-card>
+
+
+<!-- <h1>Crear usuario nuevo</h1>
 @if (msmResp != '' ) {
   <div class="alert alert-success" role="alert">
     {{msmResp}}
@@ -33,4 +67,4 @@
 
     <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Submit</button>
   </form>
-</div>
+</div> -->

@@ -28,14 +28,18 @@ export class UsuariosService {
   }
 
    // Actualizar un usuario existente
-   updateUsuario(id: number, usuario: UsuarioDTO): Observable<void> {
+  updateUsuario(id: number, usuario: UsuarioDTO): Observable<void> {
     return this.http.put<void>(`${this.apiURL}/${id}`, usuario);
-}
+  }
 
-// Eliminar un usuario
-deleteUsuario(id: any): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/Delete/${id}`);
-}
+  // Eliminar un usuario
+  deleteUsuario(id: any): Observable<void> {
+      return this.http.delete<void>(`${this.apiURL}/Delete/${id}`);
+  }
+
+  getUsuarioByGuild(guild: string): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${this.apiURL}/GetUsuarioByGuid/${guild}`);
+  }
 
   // getEmpleados(usuario?:any) {
   //   return mockUsuarios;

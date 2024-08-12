@@ -1,1 +1,61 @@
-<p>form-usuario works!</p>
+  <!-- Botón de retroceso -->
+  <button mat-icon-button (click)="onBack()" class="back-button">
+    <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+
+@if(isCreateMode){
+  <h1>Registro Usuario Nuevo</h1>
+}@else {<h1>Editar Usuario</h1>}
+
+
+
+<div class="form-container">
+  <mat-card class="form-card">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field class="full-width">
+        <mat-label>User Name</mat-label>
+        <input matInput type="text" id="userName" formControlName="userName">
+      </mat-form-field>
+
+      <!-- Solo muestra estos campos si isCreate es false -->
+      <mat-form-field class="full-width" *ngIf="isCreateMode">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" id="password" formControlName="password">
+      </mat-form-field>
+
+      <mat-form-field class="full-width" *ngIf="isCreateMode">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" id="passwordConfirm" formControlName="passwordConfirm">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" id="name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" id="correo" formControlName="correo">
+      </mat-form-field>
+<!--
+      <mat-form-field class="full-width">
+        <mat-label>Profesion</mat-label>
+        <input matInput type="text" id="profesionId" formControlName="profesionId">
+      </mat-form-field> -->
+
+      <mat-form-field class="full-width">
+        <mat-label>Selecciona tu profesion</mat-label>
+        <mat-select id="profesionId" formControlName="profesionId">
+          @for (profesion of listProfesiones; track profesion) {
+            <mat-option [value]="profesion.id">{{profesion.nombre}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">
+        {{ isCreateMode ? 'Crear' : 'Actualizar' }}
+      </button>
+    </form>
+  </mat-card>
+</div>

@@ -5,5 +5,6 @@ export interface UsuarioCreate {
   passwordConfirm: string;
   name: string;
   correo: string;
+  profesionId:string;
 }
 

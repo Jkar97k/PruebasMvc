@@ -6,6 +6,7 @@ import { UsuariosService } from '../../core/Services/Usuario.Service';
 import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2'
 import { ToastService } from '../../core/Alerts/toast.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ListUsuarioComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _usuariosService: UsuariosService,
-    private _message:ToastService
+    private _message:ToastService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,10 +50,14 @@ export class ListUsuarioComponent implements OnInit, AfterViewInit {
     });
   }
 
-
-  editarUser(usuario:UsuarioDTO){
-    console.log('editando:' ,usuario.name)
+  onCreateUsuario(){
+    this._router.navigate([`users/new`]);
   }
+  editarUser(usuario: UsuarioDTO) {
+    const guid = usuario.guid ? usuario.guid : 'new';
+    this._router.navigate([`users/${guid}`]);
+  }
+
 
   async elimiarUser(element:UsuarioDTO):Promise<void>{
     let confirm = await this._message.confirmDelete()

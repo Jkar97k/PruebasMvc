@@ -11,6 +11,7 @@ namespace P.API2.Configuration
         {
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<Usuario, UsuarioCreateDTO>().ReverseMap();
+            CreateMap<Profesion, ProfesionDTO>().ReverseMap();
         }
     }
 }

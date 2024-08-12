@@ -8,6 +8,7 @@ using P.Interfaces;
 using System.Text;
 using P.Service;
 using P.Model.Data;
+using P.Repository.Service.Aunt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,7 @@ builder.Services.AddControllersWithViews().
 // Repositorios
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IProfesionRepository, ProfesionRepository>();
 
 // Add services to the container.
 

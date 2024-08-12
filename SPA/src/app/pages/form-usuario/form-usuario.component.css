@@ -1,0 +1,45 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Centrar verticalmente en la ventana */
+}
+
+.form-card {
+  min-width: 600px; /* Ancho mínimo para el formulario */
+  max-width: 100%; /* El formulario no excederá el 100% del contenedor */
+  padding: 10px;
+  box-sizing: border-box; /* Asegura que el padding esté incluido en el ancho */
+}
+
+.full-width {
+  width: 100%; /* Asegura que cada campo ocupe todo el ancho del contenedor */
+  display: block;
+  margin-bottom: 16px; /* Espacio entre cada campo */
+}
+
+button {
+  width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+}
+
+h1{
+  text-align: center;
+}
+/* .back-button {
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Cambiado a la derecha
+} */
+
+.back-button {
+  position: left;
+  top: 10px;
+  right: 10px;
+  color: black; /* Color negro */
+  font-size: 32px; /* Tamaño del icono más grande */
+}
+
+.back-button mat-icon {
+  font-size: 32px; /* Ajusta el tamaño del ícono */
+  color: black; /* Asegura que el icono también sea negro */
+}

@@ -1,5 +1,7 @@
+<div class="button-container">
+  <button class="btn btn-primary" (click)="onCreateUsuario()">Nuevo Usuario</button>
+</div>
 <div class="table-container">
-  <!-- Paginador en la parte superior -->
   <mat-paginator [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons class="paginator"></mat-paginator>
 
   <table mat-table [dataSource]="dataSource" class="table table-striped mat-elevation-z8 centered-table" matSort>

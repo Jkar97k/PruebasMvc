@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfesionesService } from '../../core/Services/profesiones.service';
 import { Profesion } from '../../core/interfaces/Profesion.interface';
 import { MatIcon } from '@angular/material/icon';
+import { UsuarioDTO } from '../../core/interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-form-usuario',
@@ -34,7 +35,8 @@ export class FormUsuarioComponent {
 
   userForm!: FormGroup;
   isCreateMode = true;
-  listProfesiones: Profesion[] = []
+  listProfesiones: Profesion[] = [];
+  userDTO! : UsuarioDTO;
 
   constructor(
     private fb: FormBuilder,
@@ -51,13 +53,24 @@ export class FormUsuarioComponent {
     this.CargarDatosIniciales();
 
     this._activatedRoute.params.subscribe(param => {
-      let guild = param['guild'];
-      if(guild !== 'new'){
-        this.isCreateMode = false
 
+      let guild = param['guid'];
+
+      if(guild !== 'new'){
+
+        this.isCreateMode = false
         this._usuarioService.getUsuarioByGuild(guild)
-        .subscribe(resp =>{
+        .subscribe((resp : UsuarioDTO) =>{
+          this.userDTO = resp;
+          console.log(this.userDTO);
+          this.userForm.patchValue(resp);
           this.userForm.reset(resp);
+
+          // Después de cargar los datos, ajustamos las validaciones
+          this.userForm.get('password')?.clearValidators();
+          this.userForm.get('passwordConfirm')?.clearValidators();
+          this.userForm.get('password')?.updateValueAndValidity();
+          this.userForm.get('passwordConfirm')?.updateValueAndValidity();
         })
       }
     })
@@ -75,16 +88,26 @@ export class FormUsuarioComponent {
   initForm(){
     this.userForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(4)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordConfirm: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', this.isCreateMode ? [Validators.required, Validators.minLength(6)] : []],
+      passwordConfirm: ['', this.isCreateMode ? [Validators.required, Validators.minLength(6)] : []],
       name: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]] , // Nuevo campo correo
-      profesionId: [null, [Validators.required]]  // Nuevo campo profesionId
+      correo: ['', [Validators.required, Validators.email]],
+      profesionId: [null, [Validators.required]]
     });
-  }
+
+    if (!this.isCreateMode) {
+      // Quitar las validaciones de password y passwordConfirm si estamos en modo edición
+      this.userForm.get('password')?.clearValidators();
+      this.userForm.get('passwordConfirm')?.clearValidators();
+      this.userForm.get('password')?.updateValueAndValidity();
+      this.userForm.get('passwordConfirm')?.updateValueAndValidity();
+    }
+}
+
   onSubmit() {
     if (this.userForm.valid)
     {
+      console.log(this.userForm.valid);
       if(this.isCreateMode){
 
         const formData : UsuarioCreate = {
@@ -98,15 +121,24 @@ export class FormUsuarioComponent {
           this._message.showSuccessMesagge(resp.Message);
           this._router.navigate(['users']);
         });
-      }else {
-        const formData = this.userForm.value;
+      }
+      else {
+        this.userDTO = { ...this.userDTO, ...this.userForm.value };
 
-          this._usuarioService.updateUsuario(formData.id,formData)
-              .subscribe(resp => {
+        console.log(this.userDTO);
 
-                this._message.showSuccessMesagge("Registro creado exitosamente");
-                  this._router.navigate(['users']);
-              });
+        this._usuarioService.updateUsuario(this.userDTO)
+          .subscribe(resp => {
+            if (resp && resp.Message) {  // Verifica que resp y resp.Message existan
+              this._message.showSuccessMesagge(resp.Message);
+              this._router.navigate(['users']);
+            } else {
+              this._message.showErrorMessage('Error al actualizar el usuario');
+            }
+          }, error => {
+            // Maneja el error que viene del servidor
+            this._message.showErrorMessage(error.error);
+          });
       }
     }
     else

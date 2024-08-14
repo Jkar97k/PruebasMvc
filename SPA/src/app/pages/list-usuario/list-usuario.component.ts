@@ -53,9 +53,10 @@ export class ListUsuarioComponent implements OnInit, AfterViewInit {
   onCreateUsuario(){
     this._router.navigate([`users/new`]);
   }
+
   editarUser(usuario: UsuarioDTO) {
     const guid = usuario.guid ? usuario.guid : 'new';
-    this._router.navigate([`users/${guid}`]);
+    this._router.navigate([`users`,guid]);
   }
 
 

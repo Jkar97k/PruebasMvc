@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  height: 100%;
+}
+/* sidebar.component.css */
+.sidebar {
+  background-color: #343a40;
+  width: 16rem;
+}
+
+.sidebar-header {
+  background-color: #6c757d; /* Puedes cambiar este color para ajustar la cabecera */
+}
+
+.nav-link {
+  color: #ff7707;
+}
+
+.nav-link:hover {
+  background-color: #495057; /* Color de hover */
+}
+
+.nav-link.active {
+  background-color: #495057; /* Color cuando el enlace está activo */
+}
+
+.sidebar-header {
+  color: #ff7707;
+}
+.bi{
+  margin-right:10px;
+}
+

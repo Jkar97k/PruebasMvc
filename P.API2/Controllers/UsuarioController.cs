@@ -35,7 +35,7 @@ namespace P.API2.Controllers
         [HttpGet("GetUsuarioByGuid/{guid}")]
         public async Task<IActionResult> GetUserByGuid(string guid)
         {
-            return Ok(new { Result = await _usuarioService.GetUserByGuid(guid) });
+            return Ok( await _usuarioService.GetUserByGuid(guid) );
         }
 
         //[AllowAnonymous]
@@ -59,7 +59,7 @@ namespace P.API2.Controllers
             if (_usuarioService.StatusCode != 200)
                 return StatusCode(_usuarioService.StatusCode, _usuarioService.Message);
 
-            return Ok(new { Message = "Primer post" }); /*_usuarioService.Message*/
+            return Ok(new { Message = "Registro actualizado" }); /*_usuarioService.Message*/
 
         }
         [HttpDelete("Delete/{guid}")]

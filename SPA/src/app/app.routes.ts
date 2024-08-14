@@ -1,12 +1,20 @@
 import { Routes } from '@angular/router';
-import { FormularioComponent } from './pages/formulario/formulario.component';
 import { ListUsuarioComponent } from './pages/list-usuario/list-usuario.component';
 import { FormUsuarioComponent } from './pages/form-usuario/form-usuario.component';
+import { LayoutsComponent } from './layouts/layouts.component';
+import { LoginComponent } from './pages/Auth/login/login.component';
 
 export const routes: Routes = [
  // {path:'formulario', component:FormularioComponent},
 
-  //Tabla Usuarios
-  {path:'users', component:ListUsuarioComponent},
-  {path:'users/:Id', component:FormUsuarioComponent}
+  {path:'login',component:LoginComponent},
+
+  //layout
+  {path:'',
+    component:LayoutsComponent,
+    children:[
+      //Tabla Usuarios
+      {path:'users', component:ListUsuarioComponent},
+      {path:'users/:guid', component:FormUsuarioComponent},
+    ]}
 ];

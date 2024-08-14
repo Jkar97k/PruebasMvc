@@ -28,13 +28,13 @@ export class UsuariosService {
   }
 
    // Actualizar un usuario existente
-  updateUsuario(id: number, usuario: UsuarioDTO): Observable<void> {
-    return this.http.put<void>(`${this.apiURL}/${id}`, usuario);
+  updateUsuario(usuario: UsuarioDTO): Observable<any> {
+    return this.http.put<any>(`${this.apiURL}/put`, usuario);
   }
 
   // Eliminar un usuario
   deleteUsuario(id: any): Observable<void> {
-      return this.http.delete<void>(`${this.apiURL}/Delete/${id}`);
+      return this.http.delete<any>(`${this.apiURL}/Delete/${id}`);
   }
 
   getUsuarioByGuild(guild: string): Observable<UsuarioDTO> {

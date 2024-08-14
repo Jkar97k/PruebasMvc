@@ -1,0 +1,39 @@
+<div class="d-flex vh-100">
+  <!-- Sidebar -->
+  <nav class="sidebar text-white d-flex flex-column p-4">
+    <div class="text-center text-xl font-weight-bold sidebar-header py-3">
+      JoJo App
+    </div>
+    <ul class="nav flex-column mt-4 flex-grow-1">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="bi bi-house"></i>
+          <span class="ml-2">Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="users" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <i class="bi bi-person-badge"></i>
+          <span class="ml-2">Usuarios</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="users/new" routerLinkActive="active">
+          <i class="bi bi-person-plus"></i>
+          <span class="ml-2">Create</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="onLogout()">
+          <i class="bi bi-box-arrow-right"></i>
+          <span class="ml-2">Logout</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main content -->
+  <div class="flex-grow-1 p-4 bg-white">
+    <router-outlet></router-outlet>
+  </div>
+</div>

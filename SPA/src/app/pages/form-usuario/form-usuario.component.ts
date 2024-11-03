@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { UsuarioCreate } from '../../core/interfaces/UsuarioCreate.interface';
 import { UsuariosService } from '../../core/Services/Usuario.Service';
 import { ToastService } from '../../core/Alerts/toast.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ProfesionesService } from '../../core/Services/profesiones.service';
 import { Profesion } from '../../core/interfaces/Profesion.interface';
 import { MatIcon } from '@angular/material/icon';
@@ -21,6 +21,7 @@ import { UsuarioDTO } from '../../core/interfaces/Usuario.interface';
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    RouterModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
